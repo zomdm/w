@@ -55,7 +55,7 @@ minimize.Font = Enum.Font.SourceSans
 minimize.Text = ""
 minimize.TextColor3 = Color3.new(0, 0, 0)
 minimize.TextSize = 14
-minimize.MouseButton1Down:Connect(function() for i, v in main:GetDescendants() do v.Visible = false end minimize.Visible = true end)
+minimize.MouseButton1Down:Connect(function() for i, v in main:GetDescendants() do print(v.Name) v.Visible = false end minimize.Visible = true end)
 
 cls.Name = "Cls"
 cls.Parent = main
