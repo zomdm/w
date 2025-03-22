@@ -75,16 +75,18 @@ cls.BackgroundColor3 = Color3.new(1, 0.12549, 0.141176)
 cls.MouseButton1Down:Connect(function()	gui:Destroy() end)
 
 saveButton.Position = UDim2.new(0, 0, 0.1, 0)
-saveButton.Size = UDim2.new(0.5, 0, 0.2, 0)
+saveButton.Size = UDim2.new(0.5, 0, 0.1, 0)
 saveButton.BackgroundColor3 = Color3.new(0.203922, 1, 0.270588)
 saveButton.Text = "Save"
 saveButton.TextScaled = true
+saveButton.BorderSizePixel = 0
 saveButton.Parent = main
 
 loadButton.Position = UDim2.new(0.5, 0, 0.1, 0)
-loadButton.Size = UDim2.new(0.5 ,0, 0.2, 0)
+loadButton.Size = UDim2.new(0.5 ,0, 0.1, 0)
 loadButton.Text = "Load"
 loadButton.TextScaled = true
+loadButton.BorderSizePixel = 0
 loadButton.BackgroundColor3 = Color3.new(1, 0.129412, 0.145098)
 loadButton.Parent = main
 
@@ -132,31 +134,4 @@ local newnamecall = newcclosure(function(remote, ...)
 			local funcInfo = {}
 			local calling
 			funcInfo = debug.getinfo(3) or funcInfo
-			calling = false and getcallingscript() or nil 	
-			local namecallThread = coroutine.running()
-			local args = { ... }
-			task.defer(function()
-				local returnValue
-				setnamecallmethod(methodName)
-				returnValue = { original(remote, unpack(args)) }
-				if remoteName == "UpgradeUnit" and next(returnValue) ~= nil and returnValue[1] == false then return end
-				saveRemote(remoteName, table.unpack(args))
-			end)
-		end
-	end
-	return original(remote, ...)
-end, original)
-local oldNamecall = hookmetamethod(game, "__namecall", newnamecall)
-original = original or function(...)
-	return oldNamecall(...)
-end
-
-task.spawn(function()
-	while task.wait(10) do
-		if _G.ver ~= ver then gui:Destroy() break end
-		if next(logs) == nil or _G.ver ~= ver then continue end
-		for i, v in logs do
-			print(i, v)
-		end
-	end
-end)
+			calling = false 
