@@ -59,6 +59,8 @@ minimize.MouseButton1Down:Connect(function()
 	for i, v in gui:GetDescendants() do 
 		v.Visible = not v.Visible 
 	end 
+	main.Visible = true
+	main.BackgroundTransparency = 1 - main.BackgroundTransparency
 	minimize.Visible = true 
 end)
 
