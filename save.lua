@@ -62,7 +62,7 @@ minimize.MouseButton1Down:Connect(function()
 		v.Visible = not v.Visible 
 	end 
 	main.Visible = true
-	main.BackgroundTransparency = 1 - main.BackgroundTransparency
+	--main.BackgroundTransparency = 1 - main.BackgroundTransparency
 	minimize.Visible = true 
 end)
 
