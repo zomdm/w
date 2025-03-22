@@ -32,7 +32,7 @@ gui.DisplayOrder = 999999999
 gui.Parent = player:WaitForChild("PlayerGui")
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-main.Name = "Main"
+main.Name = "Main"	
 main.Parent = gui
 main.Position = UDim2.new(0, 0, 0, 0)
 main.BorderSizePixel = 0
@@ -55,7 +55,7 @@ minimize.Font = Enum.Font.SourceSans
 minimize.Text = ""
 minimize.TextColor3 = Color3.new(0, 0, 0)
 minimize.TextSize = 14
-minimize.MouseButton1Down:Connect(function() for i, v in main:GetDescendants() do v.Visible = not v.Visible end minimize.Visible = true end)
+minimize.MouseButton1Down:Connect(function() for i, v in main:GetDescendants() do v.Visible = false end minimize.Visible = true end)
 
 cls.Name = "Cls"
 cls.Parent = main
