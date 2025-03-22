@@ -134,4 +134,31 @@ local newnamecall = newcclosure(function(remote, ...)
 			local funcInfo = {}
 			local calling
 			funcInfo = debug.getinfo(3) or funcInfo
-			calling = false 
+			calling = false and getcallingscript() or nil 	
+			local namecallThread = coroutine.running()
+			local args = { ... }
+			task.defer(function()
+				local returnValue
+				setnamecallmethod(methodName)
+				returnValue = { original(remote, unpack(args)) }
+				if remoteName == "UpgradeUnit" and next(returnValue) ~= nil and returnValue[1] == false then return end
+				saveRemote(remoteName, table.unpack(args))
+			end)
+		end
+	end
+	return original(remote, ...)
+end, original)
+local oldNamecall = hookmetamethod(game, "__namecall", newnamecall)
+original = original or function(...)
+	return oldNamecall(...)
+end
+
+task.spawn(function()
+	while task.wait(10) do
+		if _G.ver ~= ver then gui:Destroy() break end
+		if next(logs) == nil or _G.ver ~= ver then continue end
+		for i, v in logs do
+			print(i, v)
+		end
+	end
+end)
