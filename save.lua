@@ -62,7 +62,8 @@ minimize.MouseButton1Down:Connect(function()
 		v.Visible = not v.Visible 
 	end 
 	main.Visible = true
-	--main.BackgroundTransparency = 1 - main.BackgroundTransparency
+	main.BackgroundTransparency = 1 - main.BackgroundTransparency
+	topbar.BackgroundTransparency = 1 - main.BackgroundTransparency
 	minimize.Visible = true 
 end)
 
@@ -75,7 +76,7 @@ cls.BackgroundColor3 = Color3.new(1, 0.12549, 0.141176)
 cls.MouseButton1Down:Connect(function()	gui:Destroy() end)
 
 saveButton.Position = UDim2.new(0, 0, 0.1, 0)
-saveButton.Size = UDim2.new(0.5, 0, 0.1, 0)
+saveButton.Size = UDim2.new(0.5, 0, 0.05, 0)
 saveButton.BackgroundColor3 = Color3.new(0.203922, 1, 0.270588)
 saveButton.Text = "Save"
 saveButton.TextScaled = true
@@ -83,7 +84,7 @@ saveButton.BorderSizePixel = 0
 saveButton.Parent = main
 
 loadButton.Position = UDim2.new(0.5, 0, 0.1, 0)
-loadButton.Size = UDim2.new(0.5 ,0, 0.1, 0)
+loadButton.Size = UDim2.new(0.5 ,0, 0.05, 0)
 loadButton.Text = "Load"
 loadButton.TextScaled = true
 loadButton.BorderSizePixel = 0
