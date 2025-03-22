@@ -26,6 +26,8 @@ local main = Instance.new("Frame")
 local topbar = Instance.new("Frame")
 local minimize = Instance.new("TextButton")
 local cls = Instance.new("TextButton")
+local saveButton = Instance.new("TextButton")
+local loadButton = Instance.new("TextButton")
 
 gui.ResetOnSpawn = false
 gui.DisplayOrder = 999999999
@@ -42,7 +44,7 @@ main.Size = UDim2.new(0.5,0,0.5,0)
 topbar.Name = "topbar"
 topbar.Parent = main
 topbar.BorderSizePixel = 0
-topbar.BackgroundColor3 = Color3.new(0.121569, 0.121569, 0.121569)
+topbar.BackgroundColor3 = Color3.new(0.121569, 0.121569, 0.121569)	
 topbar.Size = UDim2.new(1, 0, 0, 18)
 
 minimize.Name = "minimize"
@@ -71,6 +73,21 @@ cls.Position = UDim2.new(1, -18, 0, 0)
 cls.Font = Enum.Font.SourceSans
 cls.BackgroundColor3 = Color3.new(1, 0.12549, 0.141176)
 cls.MouseButton1Down:Connect(function()	gui:Destroy() end)
+
+saveButton.Position = UDim2.new(0, 0, 0.1, 0)
+saveButton.Size = UDim2.new(0.5, 0, 0.2, 0)
+saveButton.BackgroundColor3 = Color3.new(0.203922, 1, 0.270588)
+saveButton.Text = "Save"
+saveButton.TextScaled = true
+saveButton.Parent = main
+
+loadButton.Position = UDim2.new(0.5, 0, 0.1, 0)
+loadButton.Size = UDim2.new(0.5 ,0, 0.2, 0)
+loadButton.Text = "Load"
+loadButton.TextScaled = true
+loadButton.BackgroundColor3 = Color3.new(1, 0.129412, 0.145098)
+loadButton.Parent = main
+
 
 local nameToFunc = {
 	["PlaceUnit"] = placeUnit,
