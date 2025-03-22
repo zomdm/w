@@ -34,7 +34,7 @@ gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 main.Name = "Main"	
 main.Parent = gui
-main.Position = UDim2.new(0, 0, 0, 0)
+main.Position = UDim2.new(0.1, 0, 0, 0)
 main.BorderSizePixel = 0
 main.BackgroundColor3 = Color3.new(0.219608, 0.219608, 0.219608)
 main.Size = UDim2.new(0.5,0,0.5,0)
@@ -56,7 +56,6 @@ minimize.Text = ""
 minimize.TextColor3 = Color3.new(0, 0, 0)
 minimize.TextSize = 14
 minimize.MouseButton1Down:Connect(function() 
-	print(1)
 	for i, v in main:GetDescendants() do 
 		print(v.Name) 
 		v.Visible = false 
