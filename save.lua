@@ -206,7 +206,7 @@ function saveRemote(name, args)
 	print(11111111)
 	logs[#logs + 1] = {
 		[1] = name,
-		[2] = args
+		[2] = {[1] = args[1], [2] = { ["Position"] = args[2]["Position"], ["Rotation"] = args[2]["Rotation"] }, [3] = args[3]}
 	}
 end
 local newnamecall = newcclosure(function(remote, ...)
