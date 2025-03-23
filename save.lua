@@ -132,8 +132,9 @@ saveButton.MouseButton1Down:Connect(function()
 	rec = true
 end)
 
-local function start() 
-	for i, v in logs do
+local function start(s) 
+	local log = httpService:JSONDecode(s)
+	for i, v in log do
 		if _G.ver ~= ver then break end
 		local t = v[1]
 		local func = nameToFunc[t]
@@ -163,7 +164,7 @@ loadButton.MouseButton1Down:Connect(function()
 				end
 			end
 			savedList.Visible = false
-			start()
+			start(v)
 		end)
 	end
 end)
