@@ -203,6 +203,7 @@ function saveRemote(name, args)
 	for i, v in args[2] do
 		print(i, v)
 	end
+	print(11111111)
 	logs[#logs + 1] = {
 		[1] = name,
 		[2] = args
