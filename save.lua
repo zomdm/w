@@ -56,7 +56,7 @@ topbar.BackgroundColor3 = Color3.new(0.121569, 0.121569, 0.121569)
 topbar.Size = UDim2.new(1, 0, 0, 18)
 
 minimize.Name = "minimize"
-minimize.Parent = topbar
+minimize.Parent = gui
 minimize.BackgroundColor3 = Color3.new(0, 0.105882, 0.792157)
 minimize.BorderSizePixel = 0
 minimize.Position = UDim2.new(0, 0, 0, 0)
@@ -71,9 +71,6 @@ minimize.MouseButton1Down:Connect(function()
 			v.Visible = not v.Visible 
 		end
 	end 
-	main.Visible = true
-	main.BackgroundTransparency = 1 - main.BackgroundTransparency
-	topbar.BackgroundTransparency = 1 - main.BackgroundTransparency
 	minimize.Visible = true 
 end)
 
@@ -87,7 +84,7 @@ cls.Text = "X"
 cls.MouseButton1Down:Connect(function()	gui:Destroy() end)
 
 saveButton.Position = UDim2.new(0, 0, 0.1, 0)
-saveButton.Size = UDim2.new(0.5, 0, 0.05, 0)
+saveButton.Size = UDim2.new(0.5, 0, 0.1, 0)
 saveButton.BackgroundColor3 = Color3.new(0.203922, 1, 0.270588)
 saveButton.Text = "Save"
 saveButton.TextScaled = true
@@ -95,28 +92,17 @@ saveButton.BorderSizePixel = 0
 saveButton.Parent = main
 
 loadButton.Position = UDim2.new(0.5, 0, 0.1, 0)
-loadButton.Size = UDim2.new(0.5 ,0, 0.05, 0)
+loadButton.Size = UDim2.new(0.5 ,0, 0.1, 0)
 loadButton.Text = "Load"
 loadButton.TextScaled = true
 loadButton.BorderSizePixel = 0
 loadButton.BackgroundColor3 = Color3.new(1, 0.129412, 0.145098)
 loadButton.Parent = main
-loadButton.MouseButton1Down:Connect(function()
-	for i, v in listfiles("saveTTD") do
-		print(i, v)
-		local log = readfile(v)
-		local button = Instance.new("TextButton")
-		button.Name = i
-		button.Text = i
-		button.Size = UDim2.new(1, 0, 0.1, 0)
-		button.Parent = savedList
-	end
-end)
 
 saveFileName.Text = "FileName"
 saveFileName.TextScaled = true
 saveFileName.BorderSizePixel = 0
-saveFileName.Size = UDim2.new(0.5, 0, 0.05, 0)
+saveFileName.Size = UDim2.new(0.5, 0, 0.1, 0)
 saveFileName.Position = UDim2.new(0, 0, 0.2, 0)
 saveFileName.Font = Enum.Font.SourceSans
 saveFileName.Parent = main
@@ -139,13 +125,32 @@ uiList.Parent = savedList
 uiCorner.CornerRadius = 5
 uiCorner.Parent = main
 
-stopRecording.MouseButton1Down:Connect(function()
-	rec = false
-	local fileName
-	local str = httpService:JSONEncode(logs)
-	if isfile("savedTTD") then
-		writefile("savedTTD/"..fileName..".json",str)
+saveButton.MouseButton1Down:Connect(function()
+	stopRecording.Visible = true
+	rec = true
+end)
+
+loadButton.MouseButton1Down:Connect(function()
+	for i, v in listfiles("saveTTD") do
+		print(i, v)
+		local log = readfile(v)
+		local button = Instance.new("TextButton")
+		button.Name = i
+		button.Text = i
+		button.Size = UDim2.new(1, 0, 0.1, 0)
+		button.Parent = savedList
 	end
+end)
+
+stopRecording.MouseButton1Down:Connect(function()
+	if not isfile("savedTTD") then
+		makefolder("savedTTD")
+	end
+	rec = false
+	stopRecording.Visible = false
+	local fileName = saveFileName.Text
+	local str = httpService:JSONEncode(logs)
+	writefile("savedTTD/"..fileName..".json",str)
 end)
 
 local nameToFunc = {
