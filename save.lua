@@ -151,7 +151,7 @@ local function start(s)
 			local newpos = Vector3.new(pos["X"], pos["Y"], pos["Z"])
 			args[2]["Position"] = newpos
 		end
-		print(t, func, args)
+		print(t, func, args[2]["Position"], args[2]["Rotation"], args[2])
 		if not func then continue end
 		local success = func:InvokeServer(unpack(args))
 		while not success and _G.ver == ver do
