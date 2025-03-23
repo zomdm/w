@@ -128,6 +128,12 @@ uiList.Parent = savedList
 uiCorner.CornerRadius = UDim.new(0.1, 0.1)
 uiCorner.Parent = main
 
+for i, v in gui:GetDescendants() do
+	if v:IsA("Frame") or v:IsA("TextButton") then
+		uiCorner:Clone().Parent = v
+	end
+end
+
 saveButton.MouseButton1Down:Connect(function()
 	stopRecording.Visible = true
 	rec = true
@@ -166,6 +172,7 @@ local function start(s)
 		local t = v[1]
 		local func = nameToFunc[t]
 		local args = v[2]
+		printTable(args)
 		if t == "PlaceUnit" then
 			local pos = args[2]["Position"]
 			local newpos = Vector3.new(pos["X"], pos["Y"], pos["Z"])
@@ -200,6 +207,7 @@ loadButton.MouseButton1Down:Connect(function()
 		button.BackgroundColor = BrickColor.Random()
 		button.Size = UDim2.new(1, 0, 0.1, 0)
 		button.Parent = savedList
+		uiCorner:Clone().Parent = button
 		button.MouseButton1Down:Connect(function()
 			clearList()
 			savedList.Visible = false
