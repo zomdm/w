@@ -14,8 +14,8 @@ local fold = game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitF
 local gsFold = game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("_Index"):WaitForChild("sleitnick_knit@1.6.0"):WaitForChild("knit"):WaitForChild("Services"):WaitForChild("GameService"):WaitForChild("RF")
 
 local setGameMode = gsFold:WaitForChild("Vote")
-local autoSkip = fold:WaitForChild("ToggleAutoSkip")
-local setGameSpeed = fold:WaitForChild("SetGameSpeed")
+local autoSkip = gsFold:WaitForChild("ToggleAutoSkip")
+local setGameSpeed = gsFold:WaitForChild("SetGameSpeed")
 local placeUnit = fold:WaitForChild("PlaceUnit")
 local upgradeUnit = fold:WaitForChild("UpgradeUnit")	
 local getMultiplier = fold:WaitForChild("GetMultiplier")
