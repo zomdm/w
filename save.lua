@@ -55,7 +55,7 @@ main.BorderSizePixel = 0
 main.BackgroundColor3 = Color3.new(0.219608, 0.219608, 0.219608)
 main.Size = UDim2.new(0.5,0,0.5,0)
 
-uiCorner.CornerRadius = UDim.new(0.1, 0.1)
+uiCorner.CornerRadius = UDim.new(0.05, 0.05)
 uiCorner.Parent = main
 
 topbar.Name = "topbar"
@@ -78,7 +78,7 @@ minimize.MouseButton1Down:Connect(function()
 	main.Visible = not main.Visible
 end)
 lbc = uiCorner:Clone()
-lbc.CornerRadius = UDim.new(0.5, 0.5, 0.5)
+lbc.CornerRadius = UDim.new(0.1, 0.1, 0.1)
 lbc.Parent = minimize
 
 cls.Name = "Cls"
@@ -90,7 +90,7 @@ cls.BackgroundColor3 = Color3.new(1, 0.12549, 0.141176)
 cls.Text = "X"
 cls.MouseButton1Down:Connect(function()	gui:Destroy() end)
 lbc = uiCorner:Clone()
-lbc.CornerRadius = UDim.new(0.5, 0.5, 0.5)
+lbc.CornerRadius = UDim.new(0.1, 0.1, 0.1)
 lbc.Parent = cls
 
 saveButton.Position = UDim2.new(0, 0, 0.1, 0)
@@ -167,24 +167,16 @@ end
 
 local function start(s) 
 	local log = httpService:JSONDecode(readfile(s))
-	print(log, s, 1111)
-	for i, v in log do
-		for i1, v1 in v do
-			print(i1, v1)
-		end
-	end
 	for i, v in log do
 		if _G.ver ~= ver then break end
 		local t = v[1]
 		local func = nameToFunc[t]
 		local args = v[2]
-		printTable(args)
 		if t == "PlaceUnit" then
 			local pos = args[2]["Position"]
 			local newpos = Vector3.new(pos["X"], pos["Y"], pos["Z"])
 			args[2] = {["Position"] = newpos, ["Rotation"] = args[2].Rotation}
 		end
-		printTable(args)
 		if not func then continue end
 		local success = func:InvokeServer(unpack(args))
 		while not success and _G.ver == ver do
