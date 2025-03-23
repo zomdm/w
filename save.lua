@@ -161,7 +161,16 @@ local function start(s)
 	end
 end
 
+local function clearList()
+	for i, v in savedList:GetChildren() do
+		if v:IsA("TextButton") then 
+			v :Destroy()
+		end
+	end
+end
+
 loadButton.MouseButton1Down:Connect(function()
+	clearList()
 	for i, v in listfiles("savedTTD") do
 		local log = readfile(v)
 		local button = Instance.new("TextButton")
@@ -171,11 +180,7 @@ loadButton.MouseButton1Down:Connect(function()
 		button.Size = UDim2.new(1, 0, 0.1, 0)
 		button.Parent = savedList
 		button.MouseButton1Down:Connect(function()
-			for i, v in savedList:GetChildren() do
-				if v:IsA("TextButton") then 
-					v :Destroy()
-				end
-			end
+			clearList()
 			savedList.Visible = false
 			start(v)
 		end)
@@ -193,21 +198,22 @@ stopRecording.MouseButton1Down:Connect(function()
 	writefile("savedTTD/"..fileName..".json",str)
 end)
 
-
-
 local function startRec()
 	rec = true
 end
 
 function saveRemote(name, args)
-	for i, v in args[2] do
-		print(i, v)
+	if name == "PlaceUnit" then
+		logs[#logs + 1] = {
+			[1] = name,
+			[2] = {[1] = args[1], [2] = { ["Position"] = args[2]["Position"], ["Rotation"] = args[2]["Rotation"] }, [3] = args[3]}
+		}
+	else
+		logs[#logs + 1] = {
+			[1] = name,
+			[2] = args
+		}
 	end
-	print(11111111)
-	logs[#logs + 1] = {
-		[1] = name,
-		[2] = {[1] = args[1], [2] = { ["Position"] = args[2]["Position"], ["Rotation"] = args[2]["Rotation"] }, [3] = args[3]}
-	}
 end
 local newnamecall = newcclosure(function(remote, ...)
 	if typeof(remote) == "Instance" and rec and _G.ver == ver then
