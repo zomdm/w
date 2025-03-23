@@ -154,7 +154,7 @@ local function start(s)
 		if t == "PlaceUnit" then
 			local pos = args[2]
 			local newpos = Vector3.new(pos["X"], pos["Y"], pos["Z"])
-			args[2] = newpos
+			args[2]["Position"] = newpos
 		end
 		print(t, func, args)
 		if not func then continue end
@@ -211,7 +211,7 @@ function saveRemote(name, args)
 	if name == "PlaceUnit" then
 		local pos = args[2]["Position"]
 		local newpos = {["X"] = pos.X, ["Y"] = pos.Y, ["Z"] = pos.Z}
-		args[2] = newpos
+		args[2]["Position"] = newpos
 	end
 	logs[#logs + 1] = {
 		[1] = name,
