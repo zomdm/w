@@ -133,7 +133,8 @@ saveButton.MouseButton1Down:Connect(function()
 end)
 
 local function start(s) 
-	local log = httpService:JSONDecode(s)
+	local log = httpService:JSONDecode(readfile(s))
+	print(log, s)
 	for i, v in log do
 		if _G.ver ~= ver then break end
 		local t = v[1]
