@@ -139,7 +139,7 @@ local function printTable(t, add)
 	end
 	local tab = ""
 	for i = 1, add, 1 do
-		tab += '	'
+		tab..='	'
 	end
 	print(tab..'{')
 	for i, v in t do
