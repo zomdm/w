@@ -16,6 +16,8 @@ local placeUnit = fold:WaitForChild("PlaceUnit")
 local upgradeUnit = fold:WaitForChild("UpgradeUnit")
 local getMultiplier = fold:WaitForChild("GetMultiplier")
 
+local httpService = game:GetService("HttpService")
+
 local rec = true
 local original
 
@@ -28,6 +30,12 @@ local minimize = Instance.new("TextButton")
 local cls = Instance.new("TextButton")
 local saveButton = Instance.new("TextButton")
 local loadButton = Instance.new("TextButton")
+local stopRecording = Instance.new("TextButton")
+local saveFileName = Instance.new("TextBox")
+local choiceFile = Instance.new("TextButton")
+local savedList = Instance.new("ScrollingFrame")
+local uiList = Instance.new("UIListLayout")
+local uiCorner = Instance.new("UICorner")
 
 gui.ResetOnSpawn = false
 gui.DisplayOrder = 999999999
@@ -59,7 +67,9 @@ minimize.TextColor3 = Color3.new(0, 0, 0)
 minimize.TextSize = 14
 minimize.MouseButton1Down:Connect(function() 
 	for i, v in gui:GetDescendants() do 
-		v.Visible = not v.Visible 
+		if v:GetAttribute("Visible") then
+			v.Visible = not v.Visible 
+		end
 	end 
 	main.Visible = true
 	main.BackgroundTransparency = 1 - main.BackgroundTransparency
@@ -73,6 +83,7 @@ cls.Size = UDim2.new(0, 18, 0, 18)
 cls.Position = UDim2.new(1, -18, 0, 0)
 cls.Font = Enum.Font.SourceSans
 cls.BackgroundColor3 = Color3.new(1, 0.12549, 0.141176)
+cls.Text = "X"
 cls.MouseButton1Down:Connect(function()	gui:Destroy() end)
 
 saveButton.Position = UDim2.new(0, 0, 0.1, 0)
@@ -90,7 +101,52 @@ loadButton.TextScaled = true
 loadButton.BorderSizePixel = 0
 loadButton.BackgroundColor3 = Color3.new(1, 0.129412, 0.145098)
 loadButton.Parent = main
+loadButton.MouseButton1Down:Connect(function()
+	for i, v in listfiles("saveTTD") do
+		print(i, v)
+		local log = readfile(v)
+		local button = Instance.new("TextButton")
+		button.Name = i
+		button.Text = i
+		button.Size = UDim2.new(1, 0, 0.1, 0)
+		button.Parent = savedList
+	end
+end)
 
+saveFileName.Text = "FileName"
+saveFileName.TextScaled = true
+saveFileName.BorderSizePixel = 0
+saveFileName.Size = UDim2.new(0.5, 0, 0.05, 0)
+saveFileName.Position = UDim2.new(0, 0, 0.2, 0)
+saveFileName.Font = Enum.Font.SourceSans
+saveFileName.Parent = main
+
+stopRecording.Text = "Stop recording"
+stopRecording.BackgroundColor3 = Color3.new(1, 0, 0)
+stopRecording.TextScaled = true
+stopRecording.BorderSizePixel = 0
+stopRecording.Size = UDim2.new(0.5, 0, 0.05, 0)
+stopRecording.Position = UDim2.new(0, 0, 0.3, 0)
+stopRecording.Visible = false
+stopRecording.Parent = main
+
+savedList.Size = UDim2.new(0.5, 0, 0.8, 0)
+savedList.BorderSizePixel = 0
+savedList.Position = UDim2.new(0.5, 0, 0.1, 0)
+
+uiList.Parent = savedList
+
+uiCorner.CornerRadius = 5
+uiCorner.Parent = main
+
+stopRecording.MouseButton1Down:Connect(function()
+	rec = false
+	local fileName
+	local str = httpService:JSONEncode(logs)
+	if isfile("savedTTD") then
+		writefile("savedTTD/"..fileName..".json",str)
+	end
+end)
 
 local nameToFunc = {
 	["PlaceUnit"] = placeUnit,
