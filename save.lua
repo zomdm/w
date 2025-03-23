@@ -137,20 +137,20 @@ local function printTable(t, add)
 	if not add then
 		add = 0
 	end
-	local tab = =""
+	local tab = ""
 	for i = 1, add, 1 do
 		tab += '	'
 	end
-	print('	' * add..'{')
+	print(tab..'{')
 	for i, v in t do
 		if type(v) == "table" then
-			print('	' * add..i)
+			print(tab..i)
 			printTable(v, add + 1)
 		else 
-			print('	' * add..i..v)
+			print(tab..i..' '..v)
 		end
 	end
-	print('	' * add..'}')
+	print(tab..'}')
 end
 
 local function start(s) 
