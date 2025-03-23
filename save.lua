@@ -134,6 +134,9 @@ saveButton.MouseButton1Down:Connect(function()
 end)
 
 local function printTable(t, add)
+	if not add then
+		add = 0
+	end
 	print('	' * add..'{')
 	for i, v in t do
 		if type(v) == "table" then
