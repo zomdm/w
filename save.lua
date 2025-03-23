@@ -142,6 +142,9 @@ local function start(s)
 	local log = httpService:JSONDecode(readfile(s))
 	print(log, s, 1111)
 	for i, v in log do
+		print(i, v)
+	end
+	for i, v in log do
 		if _G.ver ~= ver then break end
 		local t = v[1]
 		local func = nameToFunc[t]
