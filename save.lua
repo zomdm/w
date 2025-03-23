@@ -22,7 +22,7 @@ local upgradeUnit = fold:WaitForChild("UpgradeUnit")
 local getMultiplier = fold:WaitForChild("GetMultiplier")
 
 local waitTime = 5 -- Time between the InvokeServers (if not passed)
-local rec = true
+local rec = false
 local gameSpeed = 1 -- GameSpeed = 1 + gameSpeed
 local gameMode = 1 -- 1 = Easy, 2 = Normal etc.
 
