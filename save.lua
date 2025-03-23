@@ -202,10 +202,15 @@ local function start(s)
 		end
 		printTable(args)
 		if not func then continue end
-		local success = func:InvokeServer(unpack(args))
+		local success = false
+		local suc, er = pcall(function()
+			success = func:InvokeServer(unpack(args))
+		end)
 		while not success and _G.ver == ver do	
 			task.wait(waitTime)
-			success = func:InvokeServer(unpack(args))
+			local suc, er = pcall(function()
+				success = func:InvokeServer(unpack(args))
+			end)
 		end
 	end
 end
