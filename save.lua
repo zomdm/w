@@ -151,6 +151,11 @@ local function start(s)
 		local t = v[1]
 		local func = nameToFunc[t]
 		local args = v[2]
+		if t == "PlaceUnit" then
+			local pos = args[2]
+			local newpos = Vector3.new(pos["X"], pos["Y"], pos["Z"])
+			args[2] = newpos
+		end
 		print(t, func, args)
 		if not func then continue end
 		local success = func:InvokeServer(unpack(args))
@@ -205,17 +210,13 @@ end
 function saveRemote(name, args)
 	if name == "PlaceUnit" then
 		local pos = args[2]["Position"]
-		print(type(pos))
-		logs[#logs + 1] = {
-			[1] = name,
-			[2] = {[1] = args[1], [2] = { ["Position"] = args[2]["Position"], ["Rotation"] = args[2]["Rotation"] }, [3] = args[3]}
-		}
-	else
-		logs[#logs + 1] = {
-			[1] = name,
-			[2] = args
-		}
+		local newpos = {["X"] = pos.X, ["Y"] = pos.Y, ["Z"] = pos.Z}
+		args[2] = newpos
 	end
+	logs[#logs + 1] = {
+		[1] = name,
+		[2] = args
+	}
 end
 local newnamecall = newcclosure(function(remote, ...)
 	if typeof(remote) == "Instance" and rec and _G.ver == ver then
