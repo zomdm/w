@@ -208,9 +208,11 @@ local function start(s)
 		end)
 		while not success and _G.ver == ver do	
 			task.wait(waitTime)
+			printTable(args)
 			local suc, er = pcall(function()
 				success = func:InvokeServer(unpack(args))
 			end)
+			printTable(args)
 		end
 	end
 end
