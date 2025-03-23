@@ -124,13 +124,19 @@ savedList.Parent = main
 
 uiList.Parent = savedList
 
-uiCorner.CornerRadius = UDim.new(1, 1)
+uiCorner.CornerRadius = UDim.new(0.1, 0.1)
 uiCorner.Parent = main
 
 saveButton.MouseButton1Down:Connect(function()
 	stopRecording.Visible = true
 	rec = true
 end)
+
+local nameToFunc = {
+	["PlaceUnit"] = placeUnit,
+	["UpgradeUnit"] = upgradeUnit,
+	["GetMultiplier"] = getMultiplier
+}
 
 local function start(s) 
 	local log = httpService:JSONDecode(readfile(s))
@@ -181,11 +187,7 @@ stopRecording.MouseButton1Down:Connect(function()
 	writefile("savedTTD/"..fileName..".json",str)
 end)
 
-local nameToFunc = {
-	["PlaceUnit"] = placeUnit,
-	["UpgradeUnit"] = upgradeUnit,
-	["GetMultiplier"] = getMultiplier
-}
+
 
 local function startRec()
 	rec = true
