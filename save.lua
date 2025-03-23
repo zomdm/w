@@ -202,7 +202,7 @@ end
 function saveRemote(name, args)
 	logs[#logs + 1] = {
 		[1] = name,
-		[2] = args[0]
+		[2] = args
 	}
 end
 local newnamecall = newcclosure(function(remote, ...)
