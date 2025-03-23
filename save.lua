@@ -147,7 +147,7 @@ local function printTable(t, add)
 			print(tab..i)
 			printTable(v, add + 1)
 		else 
-			print(tab..i..' '..v)
+			print(tab,i,v)
 		end
 	end
 	print(tab..'}')
