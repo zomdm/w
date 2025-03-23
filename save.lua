@@ -144,7 +144,7 @@ local function printTable(t, add)
 	print(tab..'{')
 	for i, v in t do
 		if type(v) == "table" then
-			print(tab..i)
+			print(tab,i)
 			printTable(v, add + 1)
 		else 
 			print(tab,i,v)
@@ -171,6 +171,7 @@ local function start(s)
 			local newpos = Vector3.new(pos["X"], pos["Y"], pos["Z"])
 			args[2] = {["Position"] = newpos, ["Rotation"] = args[2].Rotation}
 		end
+		args = {[1] = "PlaceUnit", [2] = {"Position"=Vector3.new(-300, 0, 0), "Rotation"=0}, [3] = 1}
 		printTable(args)
 		if not func then continue end
 		local success = func:InvokeServer(unpack(args))
