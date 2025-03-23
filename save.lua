@@ -10,8 +10,6 @@ local player = game.Players.LocalPlayer
 local char = player.Character
 local humRP = char:WaitForChild("HumanoidRootPart")
 
-local fold = game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("_Index"):WaitForChild("sleitnick_knit@1.6.0"):WaitForChild("knit"):WaitForChild("Services"):WaitForChild("UnitService"):WaitForChild("RF")
-
 local setGAmeMode = fold:WaitForChild("Vote")
 local autoSkip = fold:WaitForChild("ToggleAutoSkip")
 local setGameSpeed = fold:WaitForChild("SetGameSpeed")
@@ -22,7 +20,7 @@ local getMultiplier = fold:WaitForChild("GetMultiplier")
 local waitTime = 5 -- Time between the InvokeServers (if not passed)
 local rec = true
 local gameSpeed = 1 -- GameSpeed = 1 + gameSpeed
-local gameMode = "Easy" -- 1 = Easy, 2 = Normal etc.
+local gameMode = 1 -- 1 = Easy, 2 = Normal etc.
 
 setGAmeMode:InvokeServer(gameMode)
 autoSkip:InvokeServer()
