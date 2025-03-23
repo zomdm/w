@@ -12,14 +12,23 @@ local humRP = char:WaitForChild("HumanoidRootPart")
 
 local fold = game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("_Index"):WaitForChild("sleitnick_knit@1.6.0"):WaitForChild("knit"):WaitForChild("Services"):WaitForChild("UnitService"):WaitForChild("RF")
 
+local setGAmeMode = fold:WaitForChild("Vote")
+local autoSkip = fold:WaitForChild("ToggleAutoSkip")
+local setGameSpeed = fold:WaitForChild("SetGameSpeed")
 local placeUnit = fold:WaitForChild("PlaceUnit")
 local upgradeUnit = fold:WaitForChild("UpgradeUnit")
 local getMultiplier = fold:WaitForChild("GetMultiplier")
 
-local httpService = game:GetService("HttpService")
-
+local waitTime = 5 -- Time between the InvokeServers (if not passed)
 local rec = true
-local original
+local gameSpeed = 1 -- GameSpeed = 1 + gameSpeed
+local gameMode = "Easy" -- 1 = Easy, 2 = Normal etc.
+
+setGAmeMode:InvokeServer(gameMode)
+autoSkip:InvokeServer()
+setGameSpeed:InvokeServer(gameSpeed)
+
+local httpService = game:GetService("HttpService")
 
 local logs = {}
 
@@ -42,6 +51,8 @@ local nameToFunc = {
 	["UpgradeUnit"] = upgradeUnit,
 	["GetMultiplier"] = getMultiplier
 }
+
+local original
 
 gui.ResetOnSpawn = false
 gui.DisplayOrder = 999999999
@@ -95,7 +106,7 @@ lbc.Parent = cls
 
 saveButton.Position = UDim2.new(0, 0, 0.1, 0)
 saveButton.Size = UDim2.new(0.5, 0, 0.1, 0)
-saveButton.BackgroundColor3 = Color3.new(0.203922, 1, 0.270588)
+saveButton.BackgroundColor3 = Color3.new(0.141176, 0.141176, 0.141176)
 saveButton.Text = "Save"
 saveButton.TextScaled = true
 saveButton.BorderSizePixel = 0
@@ -106,7 +117,7 @@ loadButton.Size = UDim2.new(0.5 ,0, 0.1, 0)
 loadButton.Text = "Load"
 loadButton.TextScaled = true
 loadButton.BorderSizePixel = 0
-loadButton.BackgroundColor3 = Color3.new(1, 0.129412, 0.145098)
+loadButton.BackgroundColor3 = Color3.new(0.141176, 0.141176, 0.141176)
 loadButton.Parent = main
 
 saveFileName.Text = "FileName"
@@ -114,6 +125,7 @@ saveFileName.TextScaled = true
 saveFileName.BorderSizePixel = 0
 saveFileName.Size = UDim2.new(0.5, 0, 0.1, 0)
 saveFileName.Position = UDim2.new(0, 0, 0.2, 0)
+saveFileName.BackgroundColor3 = Color3.new(0.141176, 0.141176, 0.141176)
 saveFileName.Font = Enum.Font.SourceSans
 saveFileName.TextSize = 20
 saveFileName.Parent = main
@@ -183,8 +195,8 @@ local function start(s)
 		end
 		if not func then continue end
 		local success = func:InvokeServer(unpack(args))
-		while not success and _G.ver == ver do
-			task.wait(1)
+		while not success and _G.ver == ver do	
+			task.wait(waitTime)
 			success = func:InvokeServer(unpack(args))
 		end
 	end
@@ -206,7 +218,7 @@ loadButton.MouseButton1Down:Connect(function()
 		local name = string.sub(v, 10)
 		button.Name = name
 		button.Text = name
-		button.BackgroundColor = BrickColor.Red()
+		button.BackgroundColor = Color3.new(0.0470588, 0.0705882, 0.403922)
 		button.Size = UDim2.new(1, 0, 0.1, 0)
 		button.Parent = savedList
 		uiCorner:Clone().Parent = button
