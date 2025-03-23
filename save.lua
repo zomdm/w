@@ -130,6 +130,7 @@ saveFileName.BorderSizePixel = 0
 saveFileName.Size = UDim2.new(0.5, 0, 0.1, 0)
 saveFileName.Position = UDim2.new(0, 0, 0.15, 0)
 saveFileName.BackgroundColor3 = Color3.new(0.0941176, 0.0941176, 0.0941176)
+saveFileName.TextColor3 = Color3.new(1, 1, 1)
 saveFileName.Font = Enum.Font.SourceSans
 saveFileName.TextSize = 20
 saveFileName.Parent = main
@@ -139,7 +140,7 @@ stopRecording.BackgroundColor3 = Color3.new(1, 0, 0)
 stopRecording.TextScaled = true
 stopRecording.BorderSizePixel = 0
 stopRecording.Size = UDim2.new(0.5, 0, 0.1, 0)
-stopRecording.Position = UDim2.new(0, 0, 0.2, 0)
+stopRecording.Position = UDim2.new(0, 0, 0.25, 0)
 stopRecording.Visible = false
 stopRecording.Parent = main
 
@@ -193,11 +194,13 @@ local function start(s)
 		local t = v[1]
 		local func = nameToFunc[t]
 		local args = v[2]
+		printTable(args)
 		if t == "PlaceUnit" then
 			local pos = args[2]["Position"]
 			local newpos = Vector3.new(pos["X"], pos["Y"], pos["Z"])
 			args[2] = {["Position"] = newpos, ["Rotation"] = args[2].Rotation}
 		end
+		printTable(args)
 		if not func then continue end
 		local success = func:InvokeServer(unpack(args))
 		while not success and _G.ver == ver do	
