@@ -199,11 +199,10 @@ local function startRec()
 	rec = true
 end
 
-function saveRemote(name, ...)
-	local args = { ... }
+function saveRemote(name, args)
 	logs[#logs + 1] = {
 		[1] = name,
-		[2] = table.unpack(args)
+		[2] = args[0]
 	}
 end
 local newnamecall = newcclosure(function(remote, ...)
@@ -220,21 +219,12 @@ local newnamecall = newcclosure(function(remote, ...)
 			calling = false and getcallingscript() or nil 	
 			local namecallThread = coroutine.running()
 			local args = { ... }
-			for i,v in args do
-				if type(v) == "table" then
-					for i1, v1 in v do
-						print(i1, v1)
-					end
-				else
-					print(i, v)
-				end
-			end
 			task.defer(function()
 				local returnValue
 				setnamecallmethod(methodName)
 				returnValue = { original(remote, unpack(args)) }
 				if remoteName == "UpgradeUnit" and next(returnValue) ~= nil and returnValue[1] == false then return end
-				saveRemote(remoteName, table.unpack(args))
+				saveRemote(remoteName, args)
 			end)
 		end
 	end
