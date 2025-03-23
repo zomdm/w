@@ -204,6 +204,8 @@ end
 
 function saveRemote(name, args)
 	if name == "PlaceUnit" then
+		local pos = args[2]["Position"]
+		print(type(pos))
 		logs[#logs + 1] = {
 			[1] = name,
 			[2] = {[1] = args[1], [2] = { ["Position"] = args[2]["Position"], ["Rotation"] = args[2]["Rotation"] }, [3] = args[3]}
