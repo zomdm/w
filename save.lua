@@ -139,7 +139,7 @@ stopRecording.BackgroundColor3 = Color3.new(1, 0, 0)
 stopRecording.TextScaled = true
 stopRecording.BorderSizePixel = 0
 stopRecording.Size = UDim2.new(0.5, 0, 0.1, 0)
-stopRecording.Position = UDim2.new(0, 0, 0.25, 0)
+stopRecording.Position = UDim2.new(0, 0, 0.2, 0)
 stopRecording.Visible = false
 stopRecording.Parent = main
 
@@ -147,6 +147,7 @@ savedList.Size = UDim2.new(0.5, 0, 0.8, 0)
 savedList.BorderSizePixel = 0
 savedList.Position = UDim2.new(0.5, 0, 0.15, 0)
 savedList.BackgroundTransparency = 0.7
+savedList.BackgroundColor3 = Color3.new(0.121569, 0.121569, 0.121569)
 savedList.Parent = main
 lbc = uiCorner:Clone()
 lbc.CornerRadius = UDim.new(0.5,0.5)
@@ -222,7 +223,7 @@ loadButton.MouseButton1Down:Connect(function()
 		local name = string.sub(v, 10)
 		button.Name = name
 		button.Text = name
-		button.BackgroundColor3 = Color3.new(0.0470588, 0.0705882, 0.403922)
+		button.BackgroundColor3 = Color3.new(0.0941176, 0.0941176, 0.0941176)
 		button.Size = UDim2.new(1, 0, 0.1, 0)
 		button.Parent = savedList
 		uiCorner:Clone().Parent = button
