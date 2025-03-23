@@ -227,6 +227,7 @@ end
 
 loadButton.MouseButton1Down:Connect(function()
 	clearList()
+	print(1)
 	for i, v in listfiles("savedTTD") do
 		local log = readfile(v)
 		local button = Instance.new("TextButton")
