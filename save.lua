@@ -142,7 +142,9 @@ local function start(s)
 	local log = httpService:JSONDecode(readfile(s))
 	print(log, s, 1111)
 	for i, v in log do
-		print(i, v)
+		for i1, v1 in v do
+			print(i1, v1)
+		end
 	end
 	for i, v in log do
 		if _G.ver ~= ver then break end
