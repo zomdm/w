@@ -120,6 +120,7 @@ savedList.Size = UDim2.new(0.5, 0, 0.8, 0)
 savedList.BorderSizePixel = 0
 savedList.Position = UDim2.new(0.5, 0, 0.1, 0)
 savedList.Parent = main
+print(1)
 
 uiList.Parent = savedList
 
