@@ -122,7 +122,7 @@ savedList.Position = UDim2.new(0.5, 0, 0.1, 0)
 
 uiList.Parent = savedList
 
-uiCorner.CornerRadius = 5
+uiCorner.CornerRadius = UDim.new(5, 5)
 uiCorner.Parent = main
 
 saveButton.MouseButton1Down:Connect(function()
