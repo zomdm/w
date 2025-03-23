@@ -138,8 +138,6 @@ saveButton.MouseButton1Down:Connect(function()
 	rec = true
 end)
 
-
-
 local function start(s) 
 	local log = httpService:JSONDecode(readfile(s))
 	print(log, s, 1111)
