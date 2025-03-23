@@ -59,7 +59,7 @@ minimize.Name = "minimize"
 minimize.Parent = gui
 minimize.BackgroundColor3 = Color3.new(0, 0.105882, 0.792157)
 minimize.BorderSizePixel = 0
-minimize.Position = UDim2.new(0, 0, 0, 0)
+minimize.Position = UDim2.new(0.1, 0, 0, 0)
 minimize.Size = UDim2.new(0, 18, 0, 18)
 minimize.Font = Enum.Font.SourceSans
 minimize.Text = ""
@@ -119,6 +119,7 @@ stopRecording.Parent = main
 savedList.Size = UDim2.new(0.5, 0, 0.8, 0)
 savedList.BorderSizePixel = 0
 savedList.Position = UDim2.new(0.5, 0, 0.1, 0)
+savedList.Parent = main
 
 uiList.Parent = savedList
 
@@ -135,8 +136,9 @@ loadButton.MouseButton1Down:Connect(function()
 		print(i, v)
 		local log = readfile(v)
 		local button = Instance.new("TextButton")
-		button.Name = i
-		button.Text = i
+		local name = string.sub(v, 10)
+		button.Name = name
+		button.Text = name
 		button.Size = UDim2.new(1, 0, 0.1, 0)
 		button.Parent = savedList
 	end
