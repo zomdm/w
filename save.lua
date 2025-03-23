@@ -220,7 +220,7 @@ loadButton.MouseButton1Down:Connect(function()
 		local name = string.sub(v, 10)
 		button.Name = name
 		button.Text = name
-		button.BackgroundColor = Color3.new(0.0470588, 0.0705882, 0.403922)
+		button.BackgroundColor3 = Color3.new(0.0470588, 0.0705882, 0.403922)
 		button.Size = UDim2.new(1, 0, 0.1, 0)
 		button.Parent = savedList
 		uiCorner:Clone().Parent = button
