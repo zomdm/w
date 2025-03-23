@@ -10,7 +10,9 @@ local player = game.Players.LocalPlayer
 local char = player.Character
 local humRP = char:WaitForChild("HumanoidRootPart")
 
-local setGAmeMode = fold:WaitForChild("Vote")
+local fold = game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("_Index"):WaitForChild("sleitnick_knit@1.6.0"):WaitForChild("knit"):WaitForChild("Services"):WaitForChild("UnitService"):WaitForChild("RF")
+
+local setGameMode = fold:WaitForChild("Vote")
 local autoSkip = fold:WaitForChild("ToggleAutoSkip")
 local setGameSpeed = fold:WaitForChild("SetGameSpeed")
 local placeUnit = fold:WaitForChild("PlaceUnit")
@@ -22,7 +24,7 @@ local rec = true
 local gameSpeed = 1 -- GameSpeed = 1 + gameSpeed
 local gameMode = 1 -- 1 = Easy, 2 = Normal etc.
 
-setGAmeMode:InvokeServer(gameMode)
+setGameMode:InvokeServer(gameMode)
 autoSkip:InvokeServer()
 setGameSpeed:InvokeServer(gameSpeed)
 
