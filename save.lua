@@ -222,7 +222,9 @@ local newnamecall = newcclosure(function(remote, ...)
 			local args = { ... }
 			for i,v in args do
 				if type(v) == "table" then
-					print(i, table.unpack(v))
+					for i1, v1 in v do
+						print(i1, v1)
+					end
 				else
 					print(i, v)
 				end
