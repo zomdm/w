@@ -133,6 +133,19 @@ saveButton.MouseButton1Down:Connect(function()
 	rec = true
 end)
 
+local function printTable(t, add)
+	print('	' * add..'{')
+	for i, v in t do
+		if type(v) == "table" then
+			print('	' * add..i)
+			printTable(v, add + 1)
+		else 
+			print('	' * add..i..v)
+		end
+	end
+	print('	' * add..'}')
+end
+
 local function start(s) 
 	local log = httpService:JSONDecode(readfile(s))
 	print(log, s, 1111)
@@ -149,9 +162,9 @@ local function start(s)
 		if t == "PlaceUnit" then
 			local pos = args[2]
 			local newpos = Vector3.new(pos["X"], pos["Y"], pos["Z"])
-			args[2]["Position"] = newpos
+			args[2] = {["Position"] = newpos, ["Rotation"] = args[2].Rotation}
 		end
-		print(t, func, args[2]["Position"], args[2]["Rotation"], args[2])
+		printTable(args)
 		if not func then continue end
 		local success = func:InvokeServer(unpack(args))
 		while not success and _G.ver == ver do
