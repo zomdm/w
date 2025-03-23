@@ -17,7 +17,7 @@ local setGameMode = gsFold:WaitForChild("Vote")
 local autoSkip = fold:WaitForChild("ToggleAutoSkip")
 local setGameSpeed = fold:WaitForChild("SetGameSpeed")
 local placeUnit = fold:WaitForChild("PlaceUnit")
-local upgradeUnit = fold:WaitForChild("UpgradeUnit")
+local upgradeUnit = fold:WaitForChild("UpgradeUnit")	
 local getMultiplier = fold:WaitForChild("GetMultiplier")
 
 local waitTime = 5 -- Time between the InvokeServers (if not passed)
