@@ -11,8 +11,9 @@ local char = player.Character
 local humRP = char:WaitForChild("HumanoidRootPart")
 
 local fold = game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("_Index"):WaitForChild("sleitnick_knit@1.6.0"):WaitForChild("knit"):WaitForChild("Services"):WaitForChild("UnitService"):WaitForChild("RF")
+local gsFold = game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("_Index"):WaitForChild("sleitnick_knit@1.6.0"):WaitForChild("knit"):WaitForChild("Services"):WaitForChild("GameService"):WaitForChild("RF"):WaitForChild("Vote")
 
-local setGameMode = fold:WaitForChild("Vote")
+local setGameMode = gsFold:WaitForChild("Vote")
 local autoSkip = fold:WaitForChild("ToggleAutoSkip")
 local setGameSpeed = fold:WaitForChild("SetGameSpeed")
 local placeUnit = fold:WaitForChild("PlaceUnit")
