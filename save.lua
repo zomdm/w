@@ -119,11 +119,12 @@ stopRecording.Parent = main
 savedList.Size = UDim2.new(0.5, 0, 0.8, 0)
 savedList.BorderSizePixel = 0
 savedList.Position = UDim2.new(0.5, 0, 0.2, 0)
+savedList.BackgroundTransparency = 0.7
 savedList.Parent = main
 
 uiList.Parent = savedList
 
-uiCorner.CornerRadius = UDim.new(5, 5)
+uiCorner.CornerRadius = UDim.new(1, 1)
 uiCorner.Parent = main
 
 saveButton.MouseButton1Down:Connect(function()
@@ -131,9 +132,23 @@ saveButton.MouseButton1Down:Connect(function()
 	rec = true
 end)
 
+local function start() 
+	for i, v in logs do
+		if _G.ver ~= ver then break end
+		local t = v[1]
+		local func = nameToFunc[t]
+		local args = v[2]
+		if not func then continue end
+		local success = func:InvokeServer(unpack(args))
+		while not success and _G.ver == ver do
+			task.wait(1)
+			success = func:InvokeServer(unpack(args))
+		end
+	end
+end
+
 loadButton.MouseButton1Down:Connect(function()
 	for i, v in listfiles("savedTTD") do
-		print(i, v)
 		local log = readfile(v)
 		local button = Instance.new("TextButton")
 		local name = string.sub(v, 10)
@@ -141,6 +156,15 @@ loadButton.MouseButton1Down:Connect(function()
 		button.Text = name
 		button.Size = UDim2.new(1, 0, 0.1, 0)
 		button.Parent = savedList
+		button.MouseButton1Down:Connect(function()
+			for i, v in savedList:GetChildren() do
+				if v:IsA("TextButton") then 
+					v :Destroy()
+				end
+			end
+			savedList.Visible = false
+			start()
+		end)
 	end
 end)
 
@@ -160,21 +184,6 @@ local nameToFunc = {
 	["UpgradeUnit"] = upgradeUnit,
 	["GetMultiplier"] = getMultiplier
 }
-
-local function start() 
-	for i, v in logs do
-		if _G.ver ~= ver then break end
-		local t = v[1]
-		local func = nameToFunc[t]
-		local args = v[2]
-		if not func then continue end
-		local success = func:InvokeServer(unpack(args))
-		while not success and _G.ver == ver do
-			task.wait(1)
-			success = func:InvokeServer(unpack(args))
-		end
-	end
-end
 
 local function startRec()
 	rec = true
