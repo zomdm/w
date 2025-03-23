@@ -200,6 +200,9 @@ local function startRec()
 end
 
 function saveRemote(name, args)
+	for i, v in args[2] do
+		print(i, v)
+	end
 	logs[#logs + 1] = {
 		[1] = name,
 		[2] = args
