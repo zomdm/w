@@ -78,7 +78,7 @@ minimize.MouseButton1Down:Connect(function()
 	main.Visible = not main.Visible
 end)
 lbc = uiCorner:Clone()
-lbc.CornerRadius = UDim.new(1, 1, 1)
+lbc.CornerRadius = UDim.new(0.5, 0.5, 0.5)
 lbc.Parent = minimize
 
 cls.Name = "Cls"
@@ -90,7 +90,7 @@ cls.BackgroundColor3 = Color3.new(1, 0.12549, 0.141176)
 cls.Text = "X"
 cls.MouseButton1Down:Connect(function()	gui:Destroy() end)
 lbc = uiCorner:Clone()
-lbc.CornerRadius = UDim.new(1, 1, 1)
+lbc.CornerRadius = UDim.new(0.5, 0.5, 0.5)
 lbc.Parent = cls
 
 saveButton.Position = UDim2.new(0, 0, 0.1, 0)
@@ -108,9 +108,6 @@ loadButton.TextScaled = true
 loadButton.BorderSizePixel = 0
 loadButton.BackgroundColor3 = Color3.new(1, 0.129412, 0.145098)
 loadButton.Parent = main
-lbc = uiCorner:Clone()
-lbc.CornerRadius = UDim.new(1, 1, 1)
-lbc.Parent = loadButton
 
 saveFileName.Text = "FileName"
 saveFileName.TextScaled = true
