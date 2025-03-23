@@ -115,13 +115,14 @@ saveFileName.BorderSizePixel = 0
 saveFileName.Size = UDim2.new(0.5, 0, 0.1, 0)
 saveFileName.Position = UDim2.new(0, 0, 0.2, 0)
 saveFileName.Font = Enum.Font.SourceSans
+saveFileName.TextSize = 20
 saveFileName.Parent = main
 
 stopRecording.Text = "Stop recording"
 stopRecording.BackgroundColor3 = Color3.new(1, 0, 0)
 stopRecording.TextScaled = true
 stopRecording.BorderSizePixel = 0
-stopRecording.Size = UDim2.new(0.5, 0, 0.05, 0)
+stopRecording.Size = UDim2.new(0.5, 0, 0.1, 0)
 stopRecording.Position = UDim2.new(0, 0, 0.3, 0)
 stopRecording.Visible = false
 stopRecording.Parent = main
