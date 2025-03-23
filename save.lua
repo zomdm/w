@@ -132,7 +132,7 @@ savedList.BorderSizePixel = 0
 savedList.Position = UDim2.new(0.5, 0, 0.2, 0)
 savedList.BackgroundTransparency = 0.7
 savedList.Parent = main
-lbc = uiList:Clone()
+lbc = uiCorner:Clone()
 lbc.CornerRadius = UDim.new(0.5,0.5)
 lbc.Parent = savedList
 
