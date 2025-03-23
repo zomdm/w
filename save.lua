@@ -201,13 +201,6 @@ end
 
 function saveRemote(name, ...)
 	local args = { ... }
-	for i,v in args do
-		if type(v) == "table" then
-			print(i, table.unpack(v))
-		else
-			print(i, v)
-		end
-	end
 	logs[#logs + 1] = {
 		[1] = name,
 		[2] = table.unpack(args)
@@ -227,6 +220,13 @@ local newnamecall = newcclosure(function(remote, ...)
 			calling = false and getcallingscript() or nil 	
 			local namecallThread = coroutine.running()
 			local args = { ... }
+			for i,v in args do
+				if type(v) == "table" then
+					print(i, table.unpack(v))
+				else
+					print(i, v)
+				end
+			end
 			task.defer(function()
 				local returnValue
 				setnamecallmethod(methodName)
