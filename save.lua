@@ -12,10 +12,11 @@ local humRP = char:WaitForChild("HumanoidRootPart")
 
 local fold = game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("_Index"):WaitForChild("sleitnick_knit@1.6.0"):WaitForChild("knit"):WaitForChild("Services"):WaitForChild("UnitService"):WaitForChild("RF")
 local gsFold = game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("_Index"):WaitForChild("sleitnick_knit@1.6.0"):WaitForChild("knit"):WaitForChild("Services"):WaitForChild("GameService"):WaitForChild("RF")
+local waveFold = game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("_Index"):WaitForChild("sleitnick_knit@1.6.0"):WaitForChild("knit"):WaitForChild("Services"):WaitForChild("WaveService"):WaitForChild("RF")
 
 local setGameMode = gsFold:WaitForChild("Vote")
-local autoSkip = gsFold:WaitForChild("ToggleAutoSkip")
-local setGameSpeed = gsFold:WaitForChild("SetGameSpeed")
+local autoSkip = waveFold:WaitForChild("ToggleAutoSkip")
+local setGameSpeed = waveFold:WaitForChild("SetGameSpeed")
 local placeUnit = fold:WaitForChild("PlaceUnit")
 local upgradeUnit = fold:WaitForChild("UpgradeUnit")	
 local getMultiplier = fold:WaitForChild("GetMultiplier")
