@@ -37,6 +37,12 @@ local savedList = Instance.new("ScrollingFrame")
 local uiList = Instance.new("UIListLayout")
 local uiCorner = Instance.new("UICorner")
 
+local nameToFunc = {
+	["PlaceUnit"] = placeUnit,
+	["UpgradeUnit"] = upgradeUnit,
+	["GetMultiplier"] = getMultiplier
+}
+
 gui.ResetOnSpawn = false
 gui.DisplayOrder = 999999999
 gui.Parent = player:WaitForChild("PlayerGui")
@@ -132,15 +138,11 @@ saveButton.MouseButton1Down:Connect(function()
 	rec = true
 end)
 
-local nameToFunc = {
-	["PlaceUnit"] = placeUnit,
-	["UpgradeUnit"] = upgradeUnit,
-	["GetMultiplier"] = getMultiplier
-}
+
 
 local function start(s) 
 	local log = httpService:JSONDecode(readfile(s))
-	print(log, s)
+	print(log, s, 1111)
 	for i, v in log do
 		if _G.ver ~= ver then break end
 		local t = v[1]
