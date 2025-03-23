@@ -151,6 +151,7 @@ local function start(s)
 		local t = v[1]
 		local func = nameToFunc[t]
 		local args = v[2]
+		print(t, func, args)
 		if not func then continue end
 		local success = func:InvokeServer(unpack(args))
 		while not success and _G.ver == ver do
