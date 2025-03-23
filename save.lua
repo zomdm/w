@@ -202,7 +202,11 @@ end
 function saveRemote(name, ...)
 	local args = { ... }
 	for i,v in table.unpack(args) do
-		print(i, table.unpack(v))
+		if type(v) == "table" then
+			print(i, table.unpack(v))
+		else
+			print(i, v)
+		end
 	end
 	logs[#logs + 1] = {
 		[1] = name,
